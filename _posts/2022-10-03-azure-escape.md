@@ -1,5 +1,5 @@
 ---
-title: "Azure Container Instances Escape"
+title: "Azure Container Instances Escape(KO)"
 author: "GRoomPang"
 
 catalog: true
@@ -93,7 +93,7 @@ ACI pod에서 해당 취약점 트리거를 시도하기에는 약간의 제약�
 *Figure 8-1. 추출한 runC*
 
 ![Figure 6-2. [the vulnerable runC of Azurescape](https://www.paloaltonetworks.com/blog/2021/09/azurescape/)](https://user-images.githubusercontent.com/54650556/193566789-be69af01-e148-4f67-aac0-d40c80322603.png){: width="80%" height="80%"}
-*Figure 8-2. Azuresacpe 때 취약했던 runC ([링크](https://www.paloaltonetworks.com/blog/2021/09/azurescape/))*
+*Figure 8-2. Azuresacpe 때 취약했던 runC*
 
 그와 동시에, 변화한 호스트의 runC 바이너리를 추출하였더니 구버전의 runC를 사용하고 있음을 확인할 수 있었고, 이는 이전에 ACI에서 발생한 취약점이었던 Azurescape에서와 동일한 버전이었다.
 
