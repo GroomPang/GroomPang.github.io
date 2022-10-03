@@ -4,7 +4,7 @@ author: "GRoomPang"
 
 catalog: true
 tags:
-  - [BoB, Cloud, Azure, serverless, escape, 한글]
+  - [BoB, Cloud, Azure, serverless, escape, ko]
 
 toc: true
 toc_sticky: true
