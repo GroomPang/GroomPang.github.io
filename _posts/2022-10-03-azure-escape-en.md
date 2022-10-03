@@ -112,7 +112,7 @@ By reaching ACI container’s host node, we could enumerate other pods within ku
 
 We could find lot of details about inner workings of ACI service and manipulated our kubelet process for testing cluster takeover, but older runC usage was patched and we ended our research. This recording below is the full ACI container escape process.
 
-[![Video Label](https://user-images.githubusercontent.com/54650556/193575221-4c104a56-a815-4093-b6f6-1a74e0f78779.png)](https://www.youtube.com/watch?v=xitHuQj8k24)
+<iframe width="640" height="360" src="https://www.youtube.com/embed/xitHuQj8k24" title="[Azure Container Instances] Container Escape" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Azure’s Fix
 
