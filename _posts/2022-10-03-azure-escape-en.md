@@ -27,9 +27,8 @@ With this vulnerability, attacker is able to gain root access of node, enumerate
 
 Serverless services like ACI provisions standardized nodes and containers to users. Exploring the internals of ACI**,** we need to identify and exploit its container runtime. Serverless container runtime can be customed or open sourced. By setting container image’s entrypoint to `/proc/self/exe`, runtime points itself as entrypoint and executes itself. 
 
-![Figure 1.  container log of entrypoint /proc/self/exe at Azure Portal](https://user-images.githubusercontent.com/54650556/193565747-0567d419-b8bf-466b-ac4c-4bce82c2b108.png){: width="50%" height="50%"}
-
-Figure 1.  container log of entrypoint /proc/self/exe at Azure Portal
+![Figure 1.  container log of entrypoint /proc/self/exe at Azure Portal](https://user-images.githubusercontent.com/54650556/193565747-0567d419-b8bf-466b-ac4c-4bce82c2b108.png)
+*Figure 1.  container log of entrypoint /proc/self/exe at Azure Portal*
 
 ACI was running in runc 1.0.0-rc10, which is vulnerable for CVE-2021-30465!
 
@@ -69,27 +68,23 @@ With some test at local, we found out by starting and stopping containers it is 
 
 ~~So~~ To increase triggering possibility within ACI limitations, the number of container and volume must be greater than CPU number. We increased volumes and decreased CPU number and memory for each container and fiddled with resource numbers([reference](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)).
 
-![Untitled](https://user-images.githubusercontent.com/54650556/193566623-377f1c9c-80de-4bea-8693-76c9fc89dfb8.png)
+![Untitled](https://user-images.githubusercontent.com/54650556/193566623-377f1c9c-80de-4bea-8693-76c9fc89dfb8.png){: width="80%" height="80%"}
 
-![Figure 3, 4. differing container environments](https://user-images.githubusercontent.com/54650556/193566637-8cf06374-1785-4601-8918-d3fe204b8a0b.png)
-
-Figure 3, 4. differing container environments
+![Figure 3, 4. differing container environments](https://user-images.githubusercontent.com/54650556/193566637-8cf06374-1785-4601-8918-d3fe204b8a0b.png){: width="80%" height="80%"}
+*Figure 3, 4. differing container environments*
 
 Interestingly by changing container numbers  the hostname changed(SandboxHost-* → wk-caas-*)!
 
 ![Figure 5. the change of the container’s environment](https://user-images.githubusercontent.com/54650556/193566770-8d08d2b8-1c47-412e-8e01-f665ff9e83a2.png)
-
-Figure 5. the change of the container’s environment
+*Figure 5. the change of the container’s environment*
 
 After some tests, we found out that the environment of the container changed like [Figure 5] (1.0.0-rc10 → 1.0.0-rc2) if there are more than 5 containers in ACI pod or we mount a gitRepo volume which works for old version of kubernetes. We extracted container runtime by using whoC, a container image created by unit42 for extracting container runtime.
 
-![Figure 6-1. runC that we extracted](https://user-images.githubusercontent.com/54650556/193566664-c7680140-1249-4ca6-af36-7c16f8dcfdf9.png)
+![Figure 6-1. runC that we extracted](https://user-images.githubusercontent.com/54650556/193566664-c7680140-1249-4ca6-af36-7c16f8dcfdf9.png){: width="80%" height="80%"}
+*Figure 6-1. runC that we extracted*
 
-Figure 6-1. runC that we extracted
-
-![Figure 6-2. [the vulnerable runC of Azurescape](https://www.paloaltonetworks.com/blog/2021/09/azurescape/)](https://user-images.githubusercontent.com/54650556/193566789-be69af01-e148-4f67-aac0-d40c80322603.png)
-
-Figure 6-2. [the vulnerable runC of Azurescape](https://www.paloaltonetworks.com/blog/2021/09/azurescape/)
+![Figure 6-2. [the vulnerable runC of Azurescape](https://www.paloaltonetworks.com/blog/2021/09/azurescape/)](https://user-images.githubusercontent.com/54650556/193566789-be69af01-e148-4f67-aac0-d40c80322603.png){: width="80%" height="80%"}
+*Figure 6-2. [the vulnerable runC of Azurescape](https://www.paloaltonetworks.com/blog/2021/09/azurescape/)*
 
 We also extracted host’s runC binary and found out they were using older version of runC, the same one as Azurescape vulnerability released by Paloalto at September ****2021.
 
@@ -104,8 +99,7 @@ Since runC v1.0.0-rc2 had more stable container escape vulnerability CVE-2019-57
 CVE-2019-5736 is a vulnerability that controls runC binary by setting the ENTRYPOINT to `/proc/self/exe` to escape to host within container. 
 
 ![Figure 7. Connecting reverse shell by applying CVE-2019-5736 trigger image](https://user-images.githubusercontent.com/54650556/193566113-2e7aa838-ed02-4aa9-ad0e-fe2815adcddc.png)
-
-Figure 7. Connecting reverse shell by applying CVE-2019-5736 trigger image
+*Figure 7. Connecting reverse shell by applying CVE-2019-5736 trigger image*
 
 By assigning more than 5 containers in ACI pod or mounting a gitRepo volume to lower runC version and planting CVE-2019-5736 trigger image, we can escape to ACI node!
 
@@ -113,9 +107,8 @@ By assigning more than 5 containers in ACI pod or mounting a gitRepo volume to l
 
 ---
 
-![Figure 8. the architecture of the exploited(escaped) ACI](https://user-images.githubusercontent.com/54650556/193566123-ef5b9a36-5596-4df5-b6ac-b53afe0245d2.png)
-
-Figure 8. the architecture of the exploited(escaped) ACI
+![Figure 8. the architecture of the exploited(escaped) ACI](https://user-images.githubusercontent.com/54650556/193566123-ef5b9a36-5596-4df5-b6ac-b53afe0245d2.png){: width="70%" height="70%"}
+*Figure 8. the architecture of the exploited(escaped) ACI*
 
 By reaching ACI container’s host node, we could enumerate other pods within kubernetes cluster, and manipulate container logs for azure website. But because azure manages one node per one account, we could not get access to resources of other account. We continued searching for multi-tenant vulnerabilities like information disclosure or cluster takeover.
 
