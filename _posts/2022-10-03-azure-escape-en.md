@@ -53,9 +53,7 @@ We tried mounting emptyDir volume to multiple containers in ACI pod to trigger t
     
     ACI mount option was set to MS_SHARED which mounts volume as `Bidirectional` mode and [propagates mount](https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation). Therefore once one container mounts a volume, the mount propagates to all containers, including the first container executing symlink exchange. Once mounted, symlink exchange does not happen, which makes triggering with multiple containers useless.
     
-    ![Figure2. exponential mount occuring because of bidirectional mode](https://user-images.githubusercontent.com/54650556/193566091-e1232839-e77a-4204-b684-24fec91ed942.png)
-    
-    Figure2. exponential mount occuring because of bidirectional mode
+    ![Figure2. exponential mount occuring because of bidirectional mode](https://user-images.githubusercontent.com/54650556/193566091-e1232839-e77a-4204-b684-24fec91ed942.png)*Figure2. exponential mount occuring because of bidirectional mode*
     
     Also the mount happens exponentially because `bidirectional` mode is equal to rshared(`MS_REC` + `MS_SHARED`). This made mounting very slow so we had to limit the number of our container.
     
