@@ -1,5 +1,5 @@
 ---
-title: "Azure Container Instances Escape(EN)"
+title: "Azure Container Instances Escape (EN)"
 author: "GRoomPang"
 
 catalog: true
