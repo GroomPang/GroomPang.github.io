@@ -1,5 +1,5 @@
 ---
-title: "Azure Container Instances Escape(KO)"
+title: "Azure Container Instances Escape (KO)"
 author: "GRoomPang"
 
 catalog: true
