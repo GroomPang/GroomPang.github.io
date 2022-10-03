@@ -2,8 +2,7 @@
 title: "Azure Container Instances Escape"
 author: "GroomPang"
 
-categories:
-  - Azure
+catalog: true
 tags:
   - [BoB, Cloud, Azure, serverless, escape]
 
