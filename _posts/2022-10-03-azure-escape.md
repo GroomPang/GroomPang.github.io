@@ -4,7 +4,7 @@ author: "GRoomPang"
 
 catalog: true
 tags:
-  - [BoB, Cloud, Azure, serverless, escape, ko]
+  - [BoB, Cloud, Azure, serverless, escape, KO]
 
 toc: true
 toc_sticky: true
@@ -90,10 +90,10 @@ ACI pod에서 해당 취약점 트리거를 시도하기에는 약간의 제약�
 약간의 테스트를 수행한 결과, 5개 이상의 컨테이너를 ACI pod에 할당하거나, 구버전 쿠버네티스에서만 지원하는 gitRepo volume을 ACI pod에 할당할 때, 호스트 환경이 위와 같이 달라짐을 확인하였다. 컨테이너 런타임을 가져올 때, unit42 팀에서 개발한 이미지인 [WhoC](https://github.com/twistlock/whoc)를 사용해 로컬 환경으로 가져올 수 있었다.
 
 ![Figure 6-1. runC that we extracted](https://user-images.githubusercontent.com/54650556/193566664-c7680140-1249-4ca6-af36-7c16f8dcfdf9.png){: width="80%" height="80%"}
-*추출한 runC*
+*Figure 8-1. 추출한 runC*
 
 ![Figure 6-2. [the vulnerable runC of Azurescape](https://www.paloaltonetworks.com/blog/2021/09/azurescape/)](https://user-images.githubusercontent.com/54650556/193566789-be69af01-e148-4f67-aac0-d40c80322603.png){: width="80%" height="80%"}
-*Azuresacpe 때 취약했던 runC ([링크](https://www.paloaltonetworks.com/blog/2021/09/azurescape/))*
+*Figure 8-2. Azuresacpe 때 취약했던 runC ([링크](https://www.paloaltonetworks.com/blog/2021/09/azurescape/))*
 
 그와 동시에, 변화한 호스트의 runC 바이너리를 추출하였더니 구버전의 runC를 사용하고 있음을 확인할 수 있었고, 이는 이전에 ACI에서 발생한 취약점이었던 Azurescape에서와 동일한 버전이었다.
 
