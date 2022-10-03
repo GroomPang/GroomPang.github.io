@@ -123,8 +123,11 @@ runC version was updated in conditions mentioned above to prevent host escape wi
 ### Timeline
 
 11.26.2021: Container Escape discovered
+
 12.09.2021: reported to MSRC
+
 1.15.2022: vulnerability accepted
+
 1.18.2022: vulnerability officially patched
 
 ## Conclusion
