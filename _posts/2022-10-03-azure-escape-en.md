@@ -1,6 +1,6 @@
 ---
 title: "Azure Container Instances Escape"
-author: "GroomPang"
+author: "GRoomPang"
 
 catalog: true
 tags:
@@ -64,7 +64,7 @@ With some test at local, we found out by starting and stopping containers it is 
 
 ---
 
-~~So~~ To increase triggering possibility within ACI limitations, the number of container and volume must be greater than CPU number. We increased volumes and decreased CPU number and memory for each container and fiddled with resource numbers([reference](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)).
+To increase triggering possibility within ACI limitations, the number of container and volume must be greater than CPU number. We increased volumes and decreased CPU number and memory for each container and fiddled with resource numbers([reference](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)).
 
 ![Untitled](https://user-images.githubusercontent.com/54650556/193566623-377f1c9c-80de-4bea-8693-76c9fc89dfb8.png){: width="80%" height="80%"}
 
@@ -112,7 +112,7 @@ By reaching ACI container’s host node, we could enumerate other pods within ku
 
 We could find lot of details about inner workings of ACI service and manipulated our kubelet process for testing cluster takeover, but older runC usage was patched and we ended our research. This recording below is the full ACI container escape process.
 
-[https://www.youtube.com/watch?v=xitHuQj8k24](https://www.youtube.com/watch?v=xitHuQj8k24)
+@[Video Label](https://www.youtube.com/watch?v=xitHuQj8k24)
 
 ## Azure’s Fix
 
@@ -122,12 +122,10 @@ runC version was updated in conditions mentioned above to prevent host escape wi
 
 ### Timeline
 
-11. 26. 2021: Container Escape discovered
-12. 09. 2021: reported to MSRC
-
-1. 15. 2022: vulnerability accepted
-
-3. 18. 2022: vulnerability officially patched
+11.26.2021: Container Escape discovered
+12.09.2021: reported to MSRC
+1.15.2022: vulnerability accepted
+1.18.2022: vulnerability officially patched
 
 ## Conclusion
 
