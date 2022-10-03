@@ -4,7 +4,7 @@ author: "GRoomPang"
 
 catalog: true
 tags:
-  - [BoB, Cloud, Azure, serverless, escape]
+  - [BoB, Cloud, Azure, serverless, escape, 한글]
 
 toc: true
 toc_sticky: true
@@ -34,10 +34,10 @@ ACI는 runC 1.0.0-rc10 버전의 컨테이너 런타임을 사용하고 있었�
 
 또한, ACI는 Azure Kubernetes Service (AKS)에서 동작한다. 그렇기 때문에, Kubernetes에서 pod를 생성할 때 사용할 수 있는 옵션들 중 대부분이 ACI에서도 비슷한 형태로 존재한다. 아래 두 그림을 통해, 일반적인 Kubernetes Cluster와 ACI Cluster의 차이를 확인할 수 있다.
 
-![그림2](https://user-images.githubusercontent.com/54650556/193580492-40bd7b83-2d54-431a-ba46-adac67f73b86.png)
+![그림2](https://user-images.githubusercontent.com/54650556/193580492-40bd7b83-2d54-431a-ba46-adac67f73b86.png){: width="60%" height="60%"}
 *Figure 2. Kubernetes Cluster*
 
-![그림4](https://user-images.githubusercontent.com/54650556/193580498-ce2da0dc-d0c8-4f4c-bf26-3917053574d8.png)
+![그림4](https://user-images.githubusercontent.com/54650556/193580498-ce2da0dc-d0c8-4f4c-bf26-3917053574d8.png){: width="60%" height="60%"}
 *Figure 3. ACI Cluster*
 
 일반적인 Kubernetes에서는 개개의 노드에서 가용한 만큼 pod를 할당하는 반면, ACI에서는 개개의 고객이 할당한 pod가 노드 1개를 차지한다. 즉, 고객 A와 고객 B가 할당한 pod가 서로 다른 노드에 할당되고, 해당 노드는 dedicated 성질을 띠고 있는 것이다.
